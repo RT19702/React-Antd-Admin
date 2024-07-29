@@ -7,7 +7,7 @@ import "./index.less";
 const Login = () => {
 	return (
 		<div className="login-container">
-			<SwitchDark />
+			{/* <SwitchDark /> */}
 			<div className="login-box">
 				<div className="login-left">
 					<img src={loginLeft} alt="login" />
@@ -24,4 +24,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default connect()(Login);

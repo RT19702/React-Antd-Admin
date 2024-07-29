@@ -28,6 +28,7 @@ const LoginForm = () => {
       autoComplete="off"
       size="large"
       onFinish={onFinish}
+      initialValues={{ username: "admin", password: "123456" }}
     >
       <Form.Item
         name="username"

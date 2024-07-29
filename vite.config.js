@@ -14,8 +14,8 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        // target: "https://mock.mengxuegu.com/mock/62abda3212c1416424630a45", // easymock
-        target: "https://mock.mengxuegu.com/mock/66a3541b904326081fb3c053", // easymock
+        target: "https://mock.mengxuegu.com/mock/62abda3212c1416424630a45", // easymock
+        // target: "https://mock.mengxuegu.com/mock/66a3541b904326081fb3c053", // easymock
         changeOrigin: true,
         rewrite: path => path.replace(/^\/api/, "")
       }
