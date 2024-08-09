@@ -4,6 +4,8 @@ import { ResultEnum } from "@/api/config/servicePort";
 import NProgress from "@/config/nprogress";
 import { message } from "antd";
 import { checkStatus } from "./helper/checkStatus";
+import { store } from "@/redux";
+
 // 创建axios取消功能实例
 const axiosCanceler = new AxiosCanceler();
 
@@ -30,7 +32,8 @@ class RequestHttp {
 				NProgress.start();
 				// * 将当前请求添加到 pending 中
 				axiosCanceler.addPending(config);
-				return { ...config, headers: { ...config.headers, } };
+				const token = store.getState().global.token;
+				return { ...config, headers: { ...config.headers,"x-access-token": token } };
 			},
 			(error) => {
 				return Promise.reject(error);
@@ -55,6 +58,7 @@ class RequestHttp {
 				return data;
 			},
 			(error) => {
+				const { response } = error;
 				NProgress.done();
 				// 请求超时单独判断，请求超时没有 response
 				if (error.message.indexOf("timeout") !== -1) message.error("请求超时，请稍后再试");

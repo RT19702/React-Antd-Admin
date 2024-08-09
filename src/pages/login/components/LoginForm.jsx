@@ -4,8 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { HOME_URL } from "@/config/config";
 import { loginApi } from "@/api/login";
+import { connect } from "react-redux";
+import { setToken } from "@/redux/modules/global/action";
 import md5 from "js-md5";
-const LoginForm = () => {
+
+const LoginForm = (props) => {
+  const { setToken } = props;
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -14,6 +18,7 @@ const LoginForm = () => {
       setLoading(true);
       loginForm.password = md5(loginForm.password);
       const { data } = await loginApi(loginForm);
+      setToken(data.access_token);
       message.success("登录成功！");
       navigate(HOME_URL);
     } finally {
@@ -57,7 +62,7 @@ const LoginForm = () => {
         >
           重置
         </Button>
-        <Button type="primary" htmlType="submit" icon={<UserOutlined />} >
+        <Button type="primary" htmlType="submit" icon={<UserOutlined />} loading={loading}>
           登录
         </Button>
       </Form.Item>
@@ -65,4 +70,6 @@ const LoginForm = () => {
   )
 }
 
-export default LoginForm;
+const mapDispatchToProps = { setToken };
+
+export default connect(null, mapDispatchToProps)(LoginForm);

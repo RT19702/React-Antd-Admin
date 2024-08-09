@@ -2,6 +2,7 @@ import reactLogo from '@/assets/react.svg'
 import loginLeft from "@/assets/images/login_left.png";
 import SwitchDark from "@/components/SwitchDark";
 import LoginForm from "./components/LoginForm";
+import { connect } from "react-redux";
 import "./index.less";
 
 const Login = () => {

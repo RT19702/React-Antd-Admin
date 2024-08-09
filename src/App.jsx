@@ -1,9 +1,12 @@
 import Router from "./router"
 import { RouterProvider } from "react-router-dom";
+import { ConfigProvider } from "antd";
 
-function App() {
+const App = () => {
   return (
-      <RouterProvider router={Router}/>
+    <ConfigProvider>
+      <RouterProvider router={Router} />
+    </ConfigProvider>
   )
 }
 
