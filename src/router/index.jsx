@@ -1,4 +1,4 @@
-import { Navigate, createBrowserRouter } from 'react-router-dom';
+import { Navigate, createHashRouter } from 'react-router-dom';
 import Login from "@/pages/login/index";
 
 const metaRouters = import.meta.glob('./**/*.jsx', { eager: true });
@@ -11,7 +11,7 @@ Object.keys(metaRouters).forEach(item => {
   });
 });
 
-const rootRouter = createBrowserRouter([
+const rootRouter = createHashRouter([
   {
     path: "/",
     element: <Navigate to="/login" />
@@ -19,11 +19,6 @@ const rootRouter = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
-    meta: {
-			requiresAuth: false,
-			title: "登录页",
-			key: "login"
-		}
   },
   ...routerArray,
   {

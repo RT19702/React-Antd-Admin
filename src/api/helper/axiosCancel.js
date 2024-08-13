@@ -51,4 +51,13 @@ export class AxiosCanceler {
       pendingMap.delete(url);
     }
   }
+  /**
+	 * @description: 清空所有pending
+	 */
+	removeAllPending() {
+		pendingMap.forEach(cancel => {
+			cancel && cancel();
+		});
+		pendingMap.clear();
+	}
 }
