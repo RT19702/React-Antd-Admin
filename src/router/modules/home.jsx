@@ -9,8 +9,22 @@ const homeRouter = [
     children: [
       {
         path: "/home/index",
-        element: lazyLoad(React.lazy(() => import("@/pages/home/index")))
-      }
+        element: lazyLoad(React.lazy(() => import("@/pages/home/index"))),
+        meta: {
+          requiresAuth: true,
+          title: "首页",
+          key: "home"
+        }
+      },
+      {
+        path: "/assembly/guide",
+        element: lazyLoad(React.lazy(() => import("@/pages/assembly/guide/index"))),
+        meta: {
+          requiresAuth: true,
+          title: "引导页",
+          key: "guide"
+        }
+      },
     ]
   }
 ]

@@ -4,6 +4,7 @@ import * as Icons from "@ant-design/icons";
 import { connect } from 'react-redux'
 import { Menu, Spin } from "antd";
 import { getMenuList } from '@/api/login'
+import { MenuList } from '@/api/config/servicePort'
 import { setMenuList } from "@/redux/modules/menu/action";
 import { useNavigate, useLocation } from "react-router-dom";
 import './index.less'
@@ -43,7 +44,8 @@ const LayoutMenu = (props) => {
   const getMenuData = async () => {
     setLoading(true);
     try {
-      const { data } = await getMenuList();
+      // const { data } = await getMenuList();
+      const data = MenuList
       if (!data) return;
       setMenuList(deepLoopFloat(data));
       setMenuListAction(data);
